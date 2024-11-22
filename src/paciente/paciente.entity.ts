@@ -1,4 +1,5 @@
 import { DiagnosticoEntity } from 'src/diagnostico/diagnostico.entity';
+import { MedicoEntity } from 'src/medico/medico.entity';
 import {
     Entity,
     PrimaryGeneratedColumn,
@@ -21,4 +22,7 @@ export class PacienteEntity{
 
     @ManyToMany(() => DiagnosticoEntity, (diagnostico) => diagnostico.pacientes, {nullable: true})
     diagnosticos: DiagnosticoEntity[]
+
+    @ManyToMany(() => MedicoEntity, (medico) => medico.pacientes, {nullable:true})
+    medicos: MedicoEntity[]
 }

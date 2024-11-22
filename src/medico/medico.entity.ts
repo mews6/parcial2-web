@@ -1,9 +1,11 @@
+import { PacienteEntity } from 'src/paciente/paciente.entity';
 import {
     Entity,
     PrimaryGeneratedColumn,
     Column,
     ManyToOne,
     OneToMany,
+    ManyToMany,
   } from 'typeorm';
 
 @Entity()
@@ -19,4 +21,8 @@ export class MedicoEntity {
 
     @Column()
     telefono: string;
+
+    @ManyToMany(() => PacienteEntity, (paciente) => paciente.medicos, {nullable: true})
+    pacientes: PacienteEntity[]
+
 }
