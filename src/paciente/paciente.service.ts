@@ -4,9 +4,9 @@ import { Repository } from 'typeorm';
 import { PacienteEntity } from './paciente.entity';
 
 import { BusinessError, 
-    BusinessLogicException } from 'src/shared/errors/business-errors';
-import { MedicoEntity } from 'src/medico/medico.entity';
-import { MedicoService } from 'src/medico/medico.service';
+    BusinessLogicException } from '../shared/errors/business-errors';
+import { MedicoEntity } from '../medico/medico.entity';
+import { MedicoService } from '../medico/medico.service';
 
 @Injectable()
 export class PacienteService {
@@ -38,6 +38,12 @@ export class PacienteService {
     } 
     
     async create(paciente: PacienteEntity): Promise<PacienteEntity> {
+        if(paciente.nombre.length < 3) {
+            throw new BusinessLogicException(
+                'The name of this patient is too short',
+                BusinessError.PRECONDITION_FAILED
+            )
+        }
         return await this.pacienteRepository.save(paciente);
     } 
     

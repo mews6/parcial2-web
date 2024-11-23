@@ -1,4 +1,4 @@
-import { PacienteEntity } from 'src/paciente/paciente.entity';
+import { PacienteEntity } from '../paciente/paciente.entity';
 import {
     Entity,
     PrimaryGeneratedColumn,

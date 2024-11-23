@@ -6,7 +6,7 @@ import {
     ManyToMany,
     OneToMany,
   } from 'typeorm';
-import { PacienteEntity } from 'src/paciente/paciente.entity';
+import { PacienteEntity } from '../paciente/paciente.entity';
 
 @Entity()
 export class DiagnosticoEntity{
