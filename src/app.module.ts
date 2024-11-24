@@ -18,8 +18,12 @@ import { DiagnosticoEntity } from './diagnostico/diagnostico.entity';
     PacienteModule,
     DiagnosticoModule,
     TypeOrmModule.forRoot({
-      type: 'sqlite',
-      database: ':memory:',
+      type: 'postgres',
+      host: 'localhost',
+      port: 5432,
+      username: 'postgres',
+      password: 'postgres',
+      database: 'postgres',
       entities: [
         MedicoEntity,
         PacienteEntity,
