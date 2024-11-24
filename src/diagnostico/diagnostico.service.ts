@@ -4,7 +4,7 @@ import { Repository } from 'typeorm';
 import { DiagnosticoEntity } from './diagnostico.entity';
 
 import { BusinessError, 
-    BusinessLogicException } from 'src/shared/errors/business-errors';
+    BusinessLogicException } from '../shared/errors/business-errors';
 
 @Injectable()
 export class DiagnosticoService {
@@ -15,13 +15,12 @@ export class DiagnosticoService {
 
 
     async findAll(): Promise<DiagnosticoEntity[]> {
-        return await this.diagnosticoRepository.find({relations: ['paciente']})
+        return await this.diagnosticoRepository.find()
     }
     
     async findOne(id: number): Promise<DiagnosticoEntity> {
         const diagnostico: DiagnosticoEntity = await this.diagnosticoRepository.findOne({
-            where: { id },
-            relations: ['paciente']
+            where: { id }
         }); 
         if(!diagnostico) {
             throw new BusinessLogicException(
