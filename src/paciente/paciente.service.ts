@@ -20,13 +20,12 @@ export class PacienteService {
     ) {}
     
     async findAll(): Promise<PacienteEntity[]> {
-        return await this.pacienteRepository.find({relations: ['medico','diagnostico']})
+        return await this.pacienteRepository.find()
     }
     
     async findOne(id: number): Promise<PacienteEntity> {
         const paciente: PacienteEntity = await this.pacienteRepository.findOne({
-            where: { id },
-            relations: ['medico','diagnostico']
+            where: { id }
         }); 
         if(!paciente) {
             throw new BusinessLogicException(

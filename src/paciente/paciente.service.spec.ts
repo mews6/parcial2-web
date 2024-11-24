@@ -74,5 +74,21 @@ describe('PacienteService', () => {
     )
   });
 
-  
+  it('should be able to return all patients', async () => {
+    const pacientes: PacienteEntity[] = await service.findAll();
+    expect(pacientes).not.toBeNull();
+    expect(pacientes).toHaveLength(pacienteList.length);
+  });
+
+  it('should be able to return a patient by id', async () => {
+    const storedPatient: PacienteEntity = pacienteList[0]
+    const patient: PacienteEntity = await service.findOne(storedPatient.id)
+
+    expect(patient).not.toBeNull();
+
+    expect(patient.id).toEqual(storedPatient.id);
+    expect(patient.nombre).toEqual(storedPatient.nombre);
+    expect(patient.genero).toEqual(storedPatient.genero)
+  })
+
 })
